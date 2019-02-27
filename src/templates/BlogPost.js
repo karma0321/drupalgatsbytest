@@ -5,7 +5,8 @@ import React from "react"
 import Layout from "../components/layout"
 
 const BlogPost = ({ data }) => {
-{console.log(data)} return (
+console.log(data);
+ return (
   <Layout>
     <article>
       <h1>{data.nodeArticle.title}</h1>
