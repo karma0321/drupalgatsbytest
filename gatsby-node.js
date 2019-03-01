@@ -7,6 +7,7 @@
 // You can delete this file if you're not using it
 const path = require(`path`)
 const transliteration = require('transliteration')
+const createPaginatedPages = require('gatsby-paginate')
 
 // Create a slug for each article and set it as a field on the node.
 exports.onCreateNode = ({ node, getNode, actions }) => {
@@ -34,7 +35,9 @@ exports.createPages = ({ actions, graphql }) => {
       graphql(
         `
           {
-            allNodeArticle {
+            allNodeArticle(
+              sort: { fields: [created], order: DESC }
+            ) {
               edges {
                 node {
                   title
@@ -52,6 +55,15 @@ exports.createPages = ({ actions, graphql }) => {
         }
 
         // Create pages for each article.
+        createPaginatedPages({
+          edges: result.data.allNodeArticle.edges,
+          createPage: createPage,
+          pageTemplate: 'src/templates/blog.js',
+          pageLength: 10, // This is optional and defaults to 10 if not used
+          pathPrefix: 'blog', // This is optional and defaults to an empty string if not used
+          buildPath: (index, pathPrefix) =>
+            index > 1 ? `${pathPrefix}/${index}` : `/${pathPrefix}`, // This is optional and this is the default
+        })
         result.data.allNodeArticle.edges.forEach(({ node }) => {
           createPage({
             path: node.fields.slug,

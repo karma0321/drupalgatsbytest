@@ -3,7 +3,6 @@ module.exports = {
     title: `Drupal Gatsby Test`,
     description: `Drupal Gatsby Test by Soulweb.`,
     author: `@soulwebsolutions`,
-    articlesLink: `/articles`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
