@@ -32,7 +32,7 @@ const ArticlesPage = ({data}) => (
 
 export const query = graphql`
   query allNodeArticle{
-    allNodeArticle{
+    allNodeArticle(limit: 10, skip: 0){
       totalCount
       edges{
         node{
