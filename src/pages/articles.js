@@ -44,7 +44,7 @@ const ArticlesPage = ({data}) => (
     <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
       <Image />
     </div>
-    <Link to="/page-2/">Go to page 2</Link>
+    <Link to="/">Go to Homepage</Link>
   </Layout>
 )
 
@@ -56,7 +56,7 @@ export const query = graphql`
         node{
           id
           title
-          created
+          created(formatString: "DD-MMM-YYYY")
           fields {
             slug
           }
