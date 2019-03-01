@@ -2,48 +2,30 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
-import Img from 'gatsby-image'
 
 const ArticlesPage = ({data}) => (
   <Layout>
-    <SEO title="Articles" keywords={[`gatsby`, `application`, `react`]} />
+    <SEO title="Articles" keywords={[`drupal`, `gatsby`, `article`]} />
     <h1>Articles page</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
     {data.allNodeArticle.edges.map(({node}, i) => (
       <div className={`list-element`} key={i}>
         <Link
           to={node.fields.slug}>
           <h2>{node.title}</h2>
         </Link>
-        {console.log(node.relationships)}
-        <p>{node.relationships.field_image.filename}</p>
-        {node.relationships.field_image.localFile.childImageSharp !== null &&
-          <div>
-            {/* <img
-              src={node.relationships.field_image.localFile.childImageSharp.fluid.srcSet}
-              alt={node.relationships.field_image.filename}
-            /> */}
-            <Img fluid={node.relationships.field_image.localFile.childImageSharp.fluid} />
-          </div>
-        }
-        {node.relationships.field_tags !== null &&
-          <div className={`tags-wrapper`}>
-            <p>Tags:</p>
-            <ul>
-            {node.relationships.field_tags.map((tag, i) => (
-                <li>{tag.name}</li>
+
+        <p>{ node.created }</p>
+        <p dangerouslySetInnerHTML={{ __html: node.body.processed.slice(0, 500).concat('...') }} />
+        { node.relationships.field_tags &&
+          <ul>
+            {node.relationships.field_tags.map(({ name }, k) => (
+              <li key={k}>#{name} </li>
             ))}
           </ul>
-        </div>
         }
       </div>
     ))}
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
     <Link to="/">Go to Homepage</Link>
   </Layout>
 )
@@ -56,7 +38,7 @@ export const query = graphql`
         node{
           id
           title
-          created(formatString: "DD-MMM-YYYY")
+          created(formatString: "MMM DD, YYYY")
           fields {
             slug
           }
