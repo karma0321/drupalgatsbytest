@@ -6,7 +6,6 @@ import SEO from "../components/seo"
 import Img from 'gatsby-image'
 
 const BlogPost = ({ data }) => {
-console.log(data);
  return (
   <Layout>
     <SEO title="Articles" keywords={[`drupal`, `gatsby`, `article`]} />
