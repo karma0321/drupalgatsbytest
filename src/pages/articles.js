@@ -15,7 +15,7 @@ const ArticlesPage = ({data}) => (
           <h2>{node.title}</h2>
         </Link>
 
-        <p>{ node.created }</p>
+        <p><i>{ node.created }</i></p>
         <p dangerouslySetInnerHTML={{ __html: node.body.processed.slice(0, 500).concat('...') }} />
         { node.relationships.field_tags &&
           <ul>
