@@ -41,8 +41,20 @@ exports.createPages = ({ actions, graphql }) => {
               edges {
                 node {
                   title
+                  created(formatString: "MMM DD, YYYY")
                   fields {
                     slug
+                  }
+                  body{
+                    value
+                    format
+                    processed
+                    summary
+                  }
+                  relationships{
+                  	field_tags{
+                      name
+                    }
                   }
                 }
               }
