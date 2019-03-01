@@ -6,25 +6,28 @@ import SEO from "../components/seo"
 import Img from 'gatsby-image'
 
 const BlogPost = ({ data }) => {
- return (
-  <Layout>
-    <SEO title="Articles" keywords={[`drupal`, `gatsby`, `article`]} />
-    <h1>{data.nodeArticle.title}</h1>
-    <article>
-      <p className="publication-date"><i>{data.nodeArticle.created}</i></p>
-      <p><Img fluid={data.nodeArticle.relationships.field_image.localFile.childImageSharp.fluid} /></p>
-      <p dangerouslySetInnerHTML={{__html: data.nodeArticle.body.processed}} />
-      { data.nodeArticle.relationships.field_tags &&
-        <ul>
-          {data.nodeArticle.relationships.field_tags.map(({ name }, k) => (
-            <li key={k}>#{name} </li>
-          ))}
-        </ul>
-      }
-    </article>
-    <Link to="/articles/">Go to Article</Link><br />
-    <Link to="/">Go to Homepage</Link>
-  </Layout>)
+  const tags = data.nodeArticle.relationships.field_tags.map(({ name }) => name)
+
+  return (
+    <Layout>
+      <SEO title={data.nodeArticle.title.concat(' | Article')} keywords={tags} />
+      <h1>{data.nodeArticle.title}</h1>
+      <article>
+        <p className="publication-date"><i>{data.nodeArticle.created}</i></p>
+        <Img fluid={data.nodeArticle.relationships.field_image.localFile.childImageSharp.fluid} />
+        <p dangerouslySetInnerHTML={{__html: data.nodeArticle.body.processed}} />
+        { data.nodeArticle.relationships.field_tags &&
+          <ul>
+            {data.nodeArticle.relationships.field_tags.map(({ name }, k) => (
+              <li key={k}>#{name} </li>
+            ))}
+          </ul>
+        }
+      </article>
+      <Link to="/articles/">Go to Article</Link><br />
+      <Link to="/">Go to Homepage</Link>
+    </Layout>
+  )
 }
 export default BlogPost
 
