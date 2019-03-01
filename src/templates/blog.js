@@ -1,4 +1,4 @@
-import React from "react"
+import React, { Fragment } from "react"
 import { Link, graphql } from "gatsby"
 
 import Layout from "../components/layout"
@@ -17,17 +17,27 @@ const BlogPage = ({ pageContext }) => {
   const { group, index, first, last, pageCount, pathPrefix } = pageContext
   const previousUrl = index - 1 === 1 ? 'blog/' : `${pathPrefix}/${index - 1}`
   const nextUrl = `${pathPrefix}/${index + 1}`
+  const firstUrl = pathPrefix
+  const lastUrl = `${pathPrefix}/${pageCount}`
 
   const Paginator = () => (
     <div className="paginator">
       {index > 1 &&
-        <NavLink className="previousLink" test={first} url={previousUrl} text="Go to Previous Page" />
+        <Fragment>
+          <NavLink className="firstLink" test={first} url={firstUrl} text="First Page" />
+          <span> | </span>
+          <NavLink className="previousLink" test={first} url={previousUrl} text="Go to Previous Page" />
+        </Fragment>
       }
       {index > 1 && index < pageCount &&
         <span> | </span>
       }
       { index < pageCount &&
-        <NavLink className="nextLink" test={last} url={nextUrl} text="Go to Next Page" />
+        <Fragment>
+          <NavLink className="nextLink" test={last} url={nextUrl} text="Go to Next Page" />
+          <span> | </span>
+          <NavLink className="lastLink" test={last} url={lastUrl} text="Last Page" />
+        </Fragment>
       }
     </div>
   )
