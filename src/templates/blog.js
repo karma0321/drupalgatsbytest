@@ -18,12 +18,27 @@ const BlogPage = ({ pageContext }) => {
   const previousUrl = index - 1 === 1 ? 'blog/' : `${pathPrefix}/${index - 1}`
   const nextUrl = `${pathPrefix}/${index + 1}`
 
+  const Paginator = () => (
+    <div className="paginator">
+      {index > 1 &&
+        <NavLink className="previousLink" test={first} url={previousUrl} text="Go to Previous Page" />
+      }
+      {index > 1 && index < pageCount &&
+        <span> | </span>
+      }
+      { index < pageCount &&
+        <NavLink className="nextLink" test={last} url={nextUrl} text="Go to Next Page" />
+      }
+    </div>
+  )
+
   return (
     <Layout>
       <SEO title="Blog" keywords={[`drupal`, `gatsby`, `blog`]} />
       <h1>Blog</h1>
-      <p><i>{pageCount} pages</i></p>
-      {/*group.map(({node}, i) => (
+      <p><i>Page {index} | {pageCount} pages</i></p>
+
+      {group.map(({node}, i) => (
         <div className={`list-element`} key={i}>
           <Link
             to={node.fields.slug}>
@@ -40,19 +55,9 @@ const BlogPage = ({ pageContext }) => {
             </ul>
           }
         </div>
-      ))*/}
+      ))}
 
-      <div className="paginator">
-        {index > 1 &&
-          <NavLink className="previousLink" test={first} url={previousUrl} text="Go to Previous Page" />
-        }
-        {index > 1 && index < pageCount &&
-          <span> | </span>
-        }
-        { index < pageCount &&
-          <NavLink className="nextLink" test={last} url={nextUrl} text="Go to Next Page" />
-        }
-      </div>
+      <Paginator />
 
       <Link to="/">Go to Homepage</Link>
     </Layout>
