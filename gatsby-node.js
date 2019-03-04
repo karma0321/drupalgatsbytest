@@ -37,6 +37,7 @@ exports.createPages = ({ actions, graphql }) => {
           {
             allNodeArticle(
               sort: { fields: [created], order: DESC }
+              filter: { status: { eq: true } }
             ) {
               edges {
                 node {
