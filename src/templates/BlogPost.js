@@ -14,8 +14,13 @@ const BlogPost = ({ data }) => {
       <h1>{data.nodeArticle.title}</h1>
       <article>
         <p className="publication-date"><i>{data.nodeArticle.created}</i></p>
-        <Img fluid={data.nodeArticle.relationships.field_image.localFile.childImageSharp.fluid} />
+
+        { data.nodeArticle.relationships.field_image &&
+          <Img fluid={data.nodeArticle.relationships.field_image.localFile.childImageSharp.fluid} />
+        }
+
         <p dangerouslySetInnerHTML={{__html: data.nodeArticle.body.processed}} />
+        
         { data.nodeArticle.relationships.field_tags &&
           <ul>
             {data.nodeArticle.relationships.field_tags.map(({ name }, k) => (
