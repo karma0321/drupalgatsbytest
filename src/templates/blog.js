@@ -1,5 +1,5 @@
 import React, { Fragment } from "react"
-import { Link, graphql } from "gatsby"
+import { Link } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -74,51 +74,4 @@ const BlogPage = ({ pageContext }) => {
   )
 }
 
-export const query = graphql`
-  query allNodeArticle {
-    allNodeArticle(
-      limit: 10
-      skip: 0
-      sort: { fields: [created], order: DESC }
-    ){
-      totalCount
-      edges{
-        node{
-          id
-          title
-          created(formatString: "MMM DD, YYYY")
-          fields {
-            slug
-          }
-          path{
-            alias
-          }
-          body{
-            value
-            format
-            processed
-            summary
-          }
-          relationships{
-          	field_tags{
-              name
-            }
-          	field_image{
-              filename
-              localFile{
-                childImageSharp{
-                  fluid(sizes: "(max-width: 1200px) 100vw, 800px") {
-                  	src
-                    ...GatsbyImageSharpFluid_noBase64
-                  }
-                }
-                relativePath
-                absolutePath
-              }
-            }
-          }
-        }
-      }
-    }
-}`
 export default BlogPage
