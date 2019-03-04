@@ -15,7 +15,7 @@ const NavLink = props => {
 const BlogPage = ({ pageContext }) => {
   console.log(pageContext)
   const { group, index, first, last, pageCount, pathPrefix } = pageContext
-  const previousUrl = index - 1 === 1 ? 'blog/' : `${pathPrefix}/${index - 1}`
+  const previousUrl = index - 1 === 1 ? `${pathPrefix}`: `${pathPrefix}/${index - 1}`
   const nextUrl = `${pathPrefix}/${index + 1}`
   const firstUrl = pathPrefix
   const lastUrl = `${pathPrefix}/${pageCount}`
