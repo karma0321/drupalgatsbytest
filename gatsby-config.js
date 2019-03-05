@@ -1,9 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
-    articlesLink: `/articles`
+    title: `Drupal Gatsby Test`,
+    description: `Drupal Gatsby Test by Soulweb.`,
+    author: `@soulwebsolutions`,
+    blogPath: `/blog`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -31,7 +31,7 @@ module.exports = {
     {
       resolve: `gatsby-source-drupal`,
       options: {
-        baseUrl: `http://drupalgatsby.test/`,
+        baseUrl: `http://drupalgatsbytest.drupalgatsby.test/`,
         apiBase: `jsonapi`, // optional, defaults to `jsonapi`
       },
     }
