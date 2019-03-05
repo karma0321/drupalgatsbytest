@@ -33,6 +33,19 @@ module.exports = {
         baseUrl: `http://drupalgatsbytest.drupalgatsby.test/`,
         apiBase: `jsonapi`, // optional, defaults to `jsonapi`
       },
+    },
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+          {
+            resolve: `@weknow/gatsby-remark-drupal`,
+            options: {
+              nodes: [`article`]
+            }
+          }
+        ]
+      }
     }
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.app/offline

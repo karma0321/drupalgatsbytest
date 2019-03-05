@@ -20,7 +20,7 @@ const BlogPost = ({ data }) => {
         }
 
         <p dangerouslySetInnerHTML={{__html: data.nodeArticle.body.processed}} />
-        
+
         { data.nodeArticle.relationships.field_tags &&
           <ul>
             {data.nodeArticle.relationships.field_tags.map(({ name }, k) => (
@@ -41,7 +41,13 @@ export const query = graphql`
     nodeArticle (fields: { slug: { eq: $slug } }) {
       title
       created(formatString: "MMM DD, YYYY")
-      changed
+      fields {
+        markdownBody {
+          childMarkdownRemark {
+            html
+          }
+        }
+      }
       body {
         processed
         summary
