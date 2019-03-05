@@ -4,10 +4,10 @@ import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-const ArticlesPage = ({data}) => (
+const Blog = ({data}) => (
   <Layout>
-    <SEO title="Articles" keywords={[`drupal`, `gatsby`, `article`]} />
-    <h1>Articles page</h1>
+    <SEO title="Blog" keywords={[`drupal`, `gatsby`, `article`]} />
+    <h1>Blog page</h1>
     {data.allNodeArticle.edges.map(({node}, i) => (
       <div className={`list-element`} key={i}>
         <Link
@@ -73,4 +73,4 @@ export const query = graphql`
       }
     }
 }`
-export default ArticlesPage
+export default Blog

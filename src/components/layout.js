@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { StaticQuery, graphql } from "gatsby"
+import { StaticQuery, Link, graphql } from "gatsby"
 
 import Header from "./header"
 import "./layout.css"
@@ -12,7 +12,7 @@ const Layout = ({ children }) => (
         site {
           siteMetadata {
             title
-            articlesLink
+            blogPath
           }
         }
       }
@@ -30,6 +30,7 @@ const Layout = ({ children }) => (
         >
           <main>{children}</main>
           <footer>
+            <Link to={data.site.siteMetadata.blogPath}>Blog</Link><br/>
             © {new Date().getFullYear()}, Built with
             {` `}
             <a href="https://www.gatsbyjs.org">Gatsby</a><br/>
