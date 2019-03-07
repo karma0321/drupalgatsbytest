@@ -16,26 +16,8 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     const slugFragment = transliteration.slugify(node.title)
     const slug = `/blog/${slugFragment}/`
 
-    // take markdown content
-    const content = node.body.value
-
-    // create node with body content
-    const textNode = {
-      id: createNodeId(`${node.id}MarkdownBody`),
-      parent: node.id,
-      children: [],
-      internal: {
-        type: _.camelCase(`${node.internal.type} MarkdownBody`),
-        // mediaType will allow remark plugin to transform plain
-        // text into markdown node
-        mediaType: `text/markdown`,
-        content,
-        contentDigest: digest(content),
-      },
-    }
-
     createNodeField({ node, name: `slug`, value: slug })
-    createNodeField({ node, name: 'markdownBody___NODE', value: textNode.id })
+
   }
 }
 

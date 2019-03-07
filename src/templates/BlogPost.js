@@ -41,13 +41,6 @@ export const query = graphql`
     nodeArticle (fields: { slug: { eq: $slug } }) {
       title
       created(formatString: "MMM DD, YYYY")
-      fields {
-        markdownBody {
-          childMarkdownRemark {
-            html
-          }
-        }
-      }
       body {
         processed
         summary
