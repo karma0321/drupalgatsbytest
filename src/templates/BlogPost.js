@@ -22,7 +22,14 @@ const BlogPost = ({ data }) => {
           <Img fluid={data.nodeArticle.relationships.field_image.localFile.childImageSharp.fluid} />
         }
 
-        <p dangerouslySetInnerHTML={{__html: data.nodeArticle.body.processed}} />
+        {console.log(data.nodeArticle.fields)}
+        {data.nodeArticle.fields.markdownBody
+          ?
+          <div dangerouslySetInnerHTML={{__html: data.nodeArticle.fields.markdownBody.childMarkdownRemark.html}} />
+          :
+          <div dangerouslySetInnerHTML={{__html: data.nodeArticle.body.processed}} />
+        }
+
 
         { data.nodeArticle.relationships.field_tags &&
           <ul>
@@ -47,6 +54,14 @@ export const query = graphql`
       body {
         processed
         summary
+      }
+      fields{
+        markdownBody{
+          childMarkdownRemark{
+          	rawMarkdownBody
+            html
+          }
+        }
       }
       relationships{
         field_tags{

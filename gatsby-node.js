@@ -43,6 +43,12 @@ exports.createPages = ({ actions, graphql }) => {
                   created(formatString: "MMM DD, YYYY")
                   fields {
                     slug
+                    markdownBody{
+                      childMarkdownRemark{
+                        html
+                        rawMarkdownBody
+                      }
+                    }
                   }
                   body{
                     value
