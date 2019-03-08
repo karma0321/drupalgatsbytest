@@ -51,12 +51,14 @@ module.exports = {
             },
           },
           {
-            resolve: "gatsby-remark-external-links",
+            resolve: `gatsby-remark-prismjs`,
             options: {
-              target: "_self",
-              rel: "nofollow"
-            }
-          }
+              classPrefix: "language-",
+              inlineCodeMarker: null,
+              showLineNumbers: true,
+              noInlineHighlight: false,
+            },
+          },
         ]
       }
     }
